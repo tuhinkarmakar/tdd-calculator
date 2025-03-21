@@ -1,0 +1,36 @@
+{
+  "name": "@tuhinkarmakar/tdd-calculator",
+  "description": "A string calculator developed using TDD.",
+  "version": "1.0.0",
+  "main": "calc.ts",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "jest"
+  ],
+  "author": {
+    "name": "Tuhin Karmakar",
+    "email": "tuhin@tuhinkarmakar.me",
+    "url": "https://tuhinkarmakar.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuhinkarmakar/tdd-calculator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tuhinkarmakar/tdd-calculator/issues",
+    "email": "tuhin@tuhinkarmakar.me"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.0",
+    "jest": "^27.0.0",
+    "ts-jest": "^27.0.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
