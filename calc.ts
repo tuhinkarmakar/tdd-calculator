@@ -13,6 +13,7 @@ export function add(numbers: string): number {
   }
 
   return numbers.split(',')
+    .flatMap(str => str.split('\n'))
     .map(Number)
     .reduce((accu, curr) => accu + curr);
 }

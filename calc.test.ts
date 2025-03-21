@@ -23,5 +23,27 @@ describe("add", () => {
       const result = add("1,2");
       expect(result).toBe(3);
     });
+
+    test('should return 3 for "1,2,3"', () => {
+      const result = add("1,2");
+      expect(result).toBe(3);
+    });
+
+    test('should return 3 for "1,2,3,"', () => {
+      const result = add("1,2");
+      expect(result).toBe(3);
+    });
+
+    test('should return 3 for " 1 , 2 , 3 , "', () => {
+      const result = add("1,2");
+      expect(result).toBe(3);
+    });
+  });
+
+  describe('with new line character', () => {
+    test('should return 6 for "1\n2,3"', () => {
+      const result = add("1\n2,3");
+      expect(result).toBe(6);
+    });
   });
 });
