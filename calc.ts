@@ -1,6 +1,10 @@
+import {
+  DELIMITER_PREFIX_REMOVER_REGEX,
+  DELIMITER_RECOGNIZER_REGEX
+} from "./constants";
+
 /**
- * Add function that takes a string of numbers and
- * returns the sum of those numbers.
+ * Takes a string representation of numbers and returns the sum of those numbers.
  *
  * @author Tuhin Karmakar <tuhin@tuhinkarmakar.me>
  * @export
@@ -12,22 +16,28 @@ export function add(numbers: string): number {
     return 0;
   }
 
-  const delimiterRegex = /(?<=\/\/)(.*?)(?=\n)/
-  const delimRemoverRegex = /\/\/.*\n/
+  const delimiter = numbers.match(DELIMITER_RECOGNIZER_REGEX)?.[0] ?? ",";
+  const withoutDelimPrefix = numbers.replace(DELIMITER_PREFIX_REMOVER_REGEX, "");
+  const nums = withoutDelimPrefix.split(delimiter) // ["1", "2", "3"] or ["1\n2", "3"]
 
-  const delimiter = numbers.match(delimiterRegex)?.[0] ?? ",";
-  const numsWithoutDelim = numbers.replace(delimRemoverRegex, "");
+  const positiveNums = [] // Excluding numbers greater than 1000
+  const negativeNums = []
 
-  const nums = numsWithoutDelim.split(delimiter)
-    .flatMap(str => str.split('\n'))
-    .map(Number)
+  for (const group of nums) {
+    const nums = group.split('\n').map(Number) // "1" -> [1], 1\n2" -> [1, 2]
 
-  const negatives = nums.filter(num => num < 0);
-
-  if (negatives.length) {
-    throw new Error(`Negative numbers not allowed: ${negatives.join(", ")}`);
+    for (const num of nums) {
+      if (num < 0) {
+        negativeNums.push(num)
+      } else if (num <= 1000) {
+        positiveNums.push(num)
+      }
+    }
   }
 
-  return nums.filter(num => num <= 1000)
-    .reduce((accu, curr) => accu + curr);
+  if (negativeNums.length) {
+    throw new Error(`Negative numbers not allowed: ${negativeNums.join(", ")}`);
+  }
+
+  return positiveNums.reduce((accu, curr) => accu + curr);
 }
