@@ -12,7 +12,13 @@ export function add(numbers: string): number {
     return 0;
   }
 
-  return numbers.split(',')
+  const delimiterRegex = /(?<=\/\/)(.*?)(?=\n)/
+  const delimRemoverRegex = /\/\/.*\n/
+
+  const delimiter = numbers.match(delimiterRegex)?.[0] ?? ",";
+  const numsWithoutDelim = numbers.replace(delimRemoverRegex, "");
+
+  return numsWithoutDelim.split(delimiter)
     .flatMap(str => str.split('\n'))
     .map(Number)
     .reduce((accu, curr) => accu + curr);

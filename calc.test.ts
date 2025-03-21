@@ -46,4 +46,11 @@ describe("add", () => {
       expect(result).toBe(6);
     });
   });
+
+  describe('with custom delimiter', () => {
+    test('should return 3 for "//;\n1;2"', () => {
+      const result = add("//;\n1;2");
+      expect(result).toBe(3);
+    });
+  });
 });
