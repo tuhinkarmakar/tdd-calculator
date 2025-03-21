@@ -28,5 +28,6 @@ export function add(numbers: string): number {
     throw new Error(`Negative numbers not allowed: ${negatives.join(", ")}`);
   }
 
-  return nums.reduce((accu, curr) => accu + curr);
+  return nums.filter(num => num <= 1000)
+    .reduce((accu, curr) => accu + curr);
 }

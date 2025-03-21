@@ -73,5 +73,27 @@ describe("add", () => {
     test('should throw an error for "-1"', () => {
       expect(() => add("-1")).toThrowError("Negative numbers not allowed: -1");
     });
+
+    test('should throw an error for "-1,-2"', () => {
+      expect(() => add("-1,-2"))
+        .toThrowError("Negative numbers not allowed: -1, -2");
+    });
+
+    test('should throw an error for "-1,-2,3"', () => {
+      expect(() => add("-1,-2,3"))
+        .toThrowError("Negative numbers not allowed: -1, -2");
+    });
+
+    test('should throw an error for "//abc\n-1abc-2abc\n-3"', () => {
+      expect(() => add("//abc\n-1abc-2abc\n-3"))
+        .toThrowError("Negative numbers not allowed: -1, -2, -3");
+    });
+  });
+
+  describe('with numbers greater than 1000', () => {
+    test('should return 2 for "2,1001"', () => {
+      const result = add("2,1001");
+      expect(result).toBe(2);
+    });
   });
 });
