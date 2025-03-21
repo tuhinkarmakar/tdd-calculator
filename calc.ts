@@ -8,9 +8,11 @@
  * @return {number} The sum of the numbers.
  */
 export function add(numbers: string): number {
-  if(!numbers) {
+  if (!numbers) {
     return 0;
   }
 
-  return Number(numbers);
+  return numbers.split(',')
+    .map(Number)
+    .reduce((accu, curr) => accu + curr);
 }

@@ -11,5 +11,17 @@ describe("add", () => {
       const result = add("0");
       expect(result).toBe(0);
     });
+
+    test('should return 1 for "1"', () => {
+      const result = add("1");
+      expect(result).toBe(1);
+    });
+  });
+
+  describe('with multiple digits', () => {
+    test('should return 3 for "1,2"', () => {
+      const result = add("1,2");
+      expect(result).toBe(3);
+    });
   });
 });
