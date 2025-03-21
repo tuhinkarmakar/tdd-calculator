@@ -18,8 +18,15 @@ export function add(numbers: string): number {
   const delimiter = numbers.match(delimiterRegex)?.[0] ?? ",";
   const numsWithoutDelim = numbers.replace(delimRemoverRegex, "");
 
-  return numsWithoutDelim.split(delimiter)
+  const nums = numsWithoutDelim.split(delimiter)
     .flatMap(str => str.split('\n'))
     .map(Number)
-    .reduce((accu, curr) => accu + curr);
+
+  const negatives = nums.filter(num => num < 0);
+
+  if (negatives.length) {
+    throw new Error(`Negative numbers not allowed: ${negatives.join(", ")}`);
+  }
+
+  return nums.reduce((accu, curr) => accu + curr);
 }

@@ -52,5 +52,26 @@ describe("add", () => {
       const result = add("//;\n1;2");
       expect(result).toBe(3);
     });
+
+    test('should return 3 for "//abc\n1abc2"', () => {
+      const result = add("//abc\n1abc2");
+      expect(result).toBe(3);
+    });
+
+    test('should return 6 for "//abc\n1abc2abc\n3"', () => {
+      const result = add("//abc\n1abc2abc\n3");
+      expect(result).toBe(6);
+    });
+
+    test('should return 6 for "//\n\n1\n2\n3"', () => {
+      const result = add("//\n\n1\n2\n3");
+      expect(result).toBe(6);
+    });
+  });
+
+  describe('with negative numbers', () => {
+    test('should throw an error for "-1"', () => {
+      expect(() => add("-1")).toThrowError("Negative numbers not allowed: -1");
+    });
   });
 });
