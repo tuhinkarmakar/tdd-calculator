@@ -95,5 +95,10 @@ describe("add", () => {
       const result = add("2,1001");
       expect(result).toBe(2);
     });
+
+    test('should return 1002 for "2,1000"', () => {
+      const result = add("2,1000");
+      expect(result).toBe(1002);
+    });
   });
 });
